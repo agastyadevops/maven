@@ -10,7 +10,7 @@ pipeline
                 git 'https://github.com/agastyadevops/maven.git'
             }
         }    
-        stage('continuousbuild')
+        stage('continuousbuild'
         {
             steps
             {
@@ -21,7 +21,7 @@ pipeline
         {
             steps
             {
-            deploy adapters: [tomcat9(credentialsId: '81cf1f65-0ce7-428c-9236-5cd99b8d4de4', path: '', url: 'http://172.31.10.60:8080')], contextPath: 'testapp', war: '**/*.war'
+            sh 'scp /var/lib/jenkins/workspace/Declerativepipeline1/webapp/target/webapp.war ubuntu@172.31.10.60:/var/lib/tomcat9/webapps/testapp.war'
             }  
         }    
         stage('continuousTesting')
